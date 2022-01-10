@@ -13,6 +13,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::group(
+    ['prefix' => 'kinopoisk/v1'],
+    function (){
+        Route::group(
+            ['prefix' => 'viewer'],
+            function (){
+                Route::group(
+                    ['prefix' => 'films'],
+                    function(){
+                        Route::get('/detail-film', 'Kinopoisk\Viewer\FilmController@detailFilm');
+                        Route::get('/list-film', 'Kinopoisk\Viewer\FilmController@listFilm');
+
+                    }
+                );
+
+                Route::group(
+                    ['prefix' => 'genre'],
+                    function(){
+                        Route::get('/list-genres', 'Kinopoisk\Viewer\GenreController@listGenres');
+                    }
+                );
+            }
+        );
+    }
+);
