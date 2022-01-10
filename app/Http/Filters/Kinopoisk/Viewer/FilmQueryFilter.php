@@ -3,7 +3,6 @@
 namespace App\Http\Filters\Kinopoisk\Viewer;
 
 use App\Http\Filters\QueryFilter;
-use App\Models\Film;
 
 class FilmQueryFilter extends QueryFilter
 {
@@ -31,5 +30,11 @@ class FilmQueryFilter extends QueryFilter
     public function date($value){
         $this->builder
             ->whereBetween('world_premiere',[$value["first_date"], $value["second_date"]]);
+    }
+
+    public function categoryList($value){
+        $this->builder
+            ->leftJoin('film_listings as fl', 'fl.film_id', '=','films.id' )
+            ->where('fl.list_category_id', $value);
     }
 }

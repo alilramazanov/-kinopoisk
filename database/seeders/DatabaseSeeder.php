@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Film;
 use App\Models\FilmByGenre;
+use App\Models\FilmListing;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,8 +20,11 @@ class DatabaseSeeder extends Seeder
 
          $this->call(CountrySeeder::class);
          $this->call(GenreSeeder::class);
+         $this->call(ListCategorySeeder::class);
 
-         Film::factory(10)->create();
+
+         Film::factory(100)->create();
          FilmByGenre::factory(20)->create();
+         FilmListing::factory(100)->create();
     }
 }

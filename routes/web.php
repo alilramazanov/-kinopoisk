@@ -30,9 +30,17 @@ Route::group(
                 );
 
                 Route::group(
-                    ['prefix' => 'genre'],
+                    ['prefix' => 'genres'],
                     function(){
                         Route::get('/list-genres', 'Kinopoisk\Viewer\GenreController@listGenres');
+                    }
+                );
+
+                Route::group(
+                    ['prefix' => 'lists'],
+                    function(){
+                        Route::get('/list-categories', 'Kinopoisk\Viewer\ListCategoryController@list');
+
                     }
                 );
             }
