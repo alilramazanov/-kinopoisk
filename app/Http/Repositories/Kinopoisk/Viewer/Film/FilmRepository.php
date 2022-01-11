@@ -3,7 +3,9 @@
 namespace App\Http\Repositories\Kinopoisk\Viewer\Film;
 
 use App\Http\Repositories\Kinopoisk\Viewer\CoreRepository;
+use App\Http\Resources\Kinopoisk\Viewer\Film\ListFilmsResource;
 use App\Models\Film as Model;
+use Illuminate\Http\Request;
 
 class FilmRepository extends CoreRepository
 {
@@ -39,5 +41,14 @@ class FilmRepository extends CoreRepository
         $filmsBuilder = $this->startConditions()->query()->select($columns);
 
         return $filmsBuilder;
+    }
+
+    public function listFavoritesBuilder($request){
+
+        $films = $this->getListFilmBuilder()
+            ->leftJoin('favorites as f', 'f.film_id', '=','films.id')
+            ->where('f.user_id', $request->user_id);
+
+        return $films;
     }
 }

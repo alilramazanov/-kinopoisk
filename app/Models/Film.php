@@ -31,4 +31,8 @@ class Film extends Model
     public function listCategories(){
         return $this->belongsToMany(ListCategory::class,'film_listings', 'list_category_id', 'film_id');
     }
+
+    public function users(){
+        return $this->belongsToMany(User::class, 'favorites', 'user_id', 'film_id');
+    }
 }

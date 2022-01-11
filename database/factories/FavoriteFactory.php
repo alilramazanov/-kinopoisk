@@ -2,23 +2,23 @@
 
 namespace Database\Factories;
 
-use App\Models\FilmByGenre;
+use App\Models\Favorite;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class FilmByGenreFactory extends Factory
+class FavoriteFactory extends Factory
 {
-
-    protected $model = FilmByGenre::class;
     /**
      * Define the model's default state.
      *
      * @return array
      */
+
+    protected $model = Favorite::class;
     public function definition()
     {
         return [
-            'film_id' => rand(1,100),
-            'genre_id' => rand(1,13)
+            'user_id' => 1,
+            'film_id' => rand(1, 100)
         ];
     }
 }
