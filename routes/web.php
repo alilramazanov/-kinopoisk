@@ -28,7 +28,8 @@ Route::group(
 
                         Route::get('/list-favorites', 'Kinopoisk\Viewer\FilmController@listFavorites');
                         Route::post('/add-in-favorites', 'Kinopoisk\Viewer\FilmController@addInFavorites');
-                        Route::post('/delete-from-favorites', 'Kinopoisk\Viewer\FilmController@deleteFromFavorites');
+
+                        Route::post('/add-evaluation', 'Kinopoisk\Viewer\FilmController@addEvaluation');
 
                     }
                 );

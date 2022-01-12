@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Kinopoisk\Viewer;
 use App\Http\Controllers\Controller;
 use App\Http\Filters\Kinopoisk\Viewer\FilmQueryFilter;
 use App\Http\Repositories\Kinopoisk\Viewer\Film\FilmRepository;
+use App\Http\Requests\Kinopoisk\Viewer\Film\AddEvaluationRequest;
 use App\Http\Requests\Kinopoisk\Viewer\Film\AddInFavoritesRequest;
 use App\Http\Requests\Kinopoisk\Viewer\Film\DetailFilmRequest;
 use App\Http\Resources\Kinopoisk\Viewer\Film\DetailFilmResource;
 use App\Http\Resources\Kinopoisk\Viewer\Film\ListFilmsResource;
+use App\Models\Evaluation;
 use App\Models\Favorite;
 use App\Models\Film;
 use Illuminate\Http\Request;
@@ -67,5 +69,20 @@ class FilmController extends Controller
         $filmBuilder = $this->filmRepository->listFavoritesBuilder($request);
 
         return ListFilmsResource::collection($filmBuilder->get());
+    }
+
+    public function addEvaluation(AddEvaluationRequest $request){
+
+        $isCreate = Evaluation::query()
+            ->updateOrCreate(
+                ['film_id' => $request->film_id, 'user_id' => $request->user_id],
+                ['score' => $request->score]
+            );
+
+        if ($isCreate) {
+            return 1;
+        }
+
+        return 0;
     }
 }

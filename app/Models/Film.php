@@ -35,4 +35,8 @@ class Film extends Model
     public function users(){
         return $this->belongsToMany(User::class, 'favorites', 'user_id', 'film_id');
     }
+
+    public function evaluations(){
+        return $this->hasMany(Evaluation::class);
+    }
 }

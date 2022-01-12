@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Evaluation;
 use App\Models\Favorite;
 use App\Models\Film;
 use App\Models\FilmByGenre;
@@ -28,5 +29,6 @@ class DatabaseSeeder extends Seeder
          FilmByGenre::factory(100)->create();
          FilmListing::factory(100)->create();
          Favorite::factory(100)->create();
+         Evaluation::factory(10)->create();
     }
 }
