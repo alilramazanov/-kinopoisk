@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Evaluation extends Model
 {
     use HasFactory;
-    protected $table = 'evaluations';
+    protected $table = 'evaluations as ev';
     protected $fillable = [
         'user_id',
         'film_id',

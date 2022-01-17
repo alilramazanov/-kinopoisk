@@ -13,28 +13,28 @@ class FilmQueryFilter extends QueryFilter
 
     public function country($value){
         $this->builder
-            ->where('country_id', $value);
+            ->where('fl.country_id', $value);
     }
 
     public function name($value){
         $this->builder
-            ->where('name', 'ilike', "%$value%");
+            ->where('fl.name', 'ilike', "%$value%");
     }
 
     public function genre($value){
         $this->builder
-            ->leftJoin('films_by_genre as fbg','fbg.film_id', '=', 'films.id')
+            ->leftJoin('films_by_genre as fbg','fbg.film_id', '=', 'fl.id')
             ->where('fbg.genre_id', $value);
     }
 
     public function date($value){
         $this->builder
-            ->whereBetween('world_premiere',[$value["first_date"], $value["second_date"]]);
+            ->whereBetween('fl.world_premiere',[$value["first_date"], $value["second_date"]]);
     }
 
     public function categoryList($value){
         $this->builder
-            ->leftJoin('film_listings as fl', 'fl.film_id', '=','films.id' )
-            ->where('fl.list_category_id', $value);
+            ->leftJoin('film_listings as film_l', 'film_l.film_id', '=','fl.id' )
+            ->where('film_l.list_category_id', $value);
     }
 }

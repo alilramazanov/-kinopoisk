@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEvaluationsTable extends Migration
+class CreateReviewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,16 @@ class CreateEvaluationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('evaluations', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('text');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('film_id')->constrained('films');
-            $table->integer('score');
-            $table->boolean('is_critic');
+            $table->foreignId('review_mood_id')->constrained('review_moods');
+            $table->boolean('is_critic')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -30,6 +33,6 @@ class CreateEvaluationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evaluations');
+        Schema::dropIfExists('reviews');
     }
 }

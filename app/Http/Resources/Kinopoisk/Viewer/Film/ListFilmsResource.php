@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Kinopoisk\Viewer\Film;
 
+use App\Http\Statistic\EvaluationStatistic;
 use App\Http\Statistic\Film\GeneralFilmStatistic;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,7 +17,7 @@ class ListFilmsResource extends JsonResource
     public function toArray($request)
     {
 
-        $generalFilmStatistic = new GeneralFilmStatistic();
+        $evaluationStatistic = new EvaluationStatistic($this->id, null);
 
         $genreNames = [];
         foreach ($this->genres as $genre) {
@@ -29,8 +30,8 @@ class ListFilmsResource extends JsonResource
             'country' => $this->country->name,
             'worldPremiere' => $this->world_premiere,
             'genre' => $genreNames,
-            'rating' => $generalFilmStatistic->getALlRating($this->id),
-            'numberOfScore' => $generalFilmStatistic->getAllScores($this->id)
+            'rating' => $evaluationStatistic->getRating(),
+            'numberOfScore' => $evaluationStatistic->countScores()
         ];
     }
 }

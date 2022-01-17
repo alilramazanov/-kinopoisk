@@ -48,6 +48,20 @@ Route::group(
 
                     }
                 );
+
+                Route::group(
+                    ['prefix' => 'reviews'],
+                    function (){
+                        Route::get('/test', 'Kinopoisk\Viewer\ReviewController@test');
+
+
+                        Route::get('/list', 'Kinopoisk\Viewer\ReviewController@list');
+
+                        Route::post('/create', 'Kinopoisk\Viewer\ReviewController@create');
+                        Route::post('/delete', 'Kinopoisk\Viewer\ReviewController@delete');
+                        Route::post('/update', 'Kinopoisk\Viewer\ReviewController@update');
+                    }
+                );
             }
         );
     }

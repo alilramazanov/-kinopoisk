@@ -19,7 +19,8 @@ class EvaluationFactory extends Factory
         return [
             'user_id' => rand(1,10),
             'film_id' => rand(1, 3),
-            'score' => rand(1, 10)
+            'score' => rand(1, 10),
+            'is_critic' => rand(0,1) ? true : false
         ];
     }
 }

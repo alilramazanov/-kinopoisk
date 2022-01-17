@@ -32,10 +32,10 @@ class FilmRepository extends CoreRepository
     public function getListFilmBuilder(){
 
         $columns = [
-            'films.id',
-            'films.name',
-            'films.country_id',
-            'films.world_premiere',
+            'fl.id',
+            'fl.name',
+            'fl.country_id',
+            'fl.world_premiere',
             ];
 
         $filmsBuilder = $this->startConditions()->query()->select($columns);
@@ -46,7 +46,7 @@ class FilmRepository extends CoreRepository
     public function listFavoritesBuilder($request){
 
         $films = $this->getListFilmBuilder()
-            ->leftJoin('favorites as f', 'f.film_id', '=','films.id')
+            ->leftJoin('favorites as f', 'f.film_id', '=','fl.id')
             ->where('f.user_id', $request->user_id);
 
         return $films;

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Film extends Model
 {
     use HasFactory;
-    protected $table = 'films';
+    protected $table = 'films as fl';
     protected $fillable = [
         'name',
         'description',
@@ -38,5 +38,9 @@ class Film extends Model
 
     public function evaluations(){
         return $this->hasMany(Evaluation::class);
+    }
+
+    public function reviews(){
+        return$this->hasMany(Review::class);
     }
 }

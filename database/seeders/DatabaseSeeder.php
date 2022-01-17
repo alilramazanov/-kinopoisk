@@ -7,6 +7,7 @@ use App\Models\Favorite;
 use App\Models\Film;
 use App\Models\FilmByGenre;
 use App\Models\FilmListing;
+use App\Models\Review;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
          $this->call(CountrySeeder::class);
          $this->call(GenreSeeder::class);
          $this->call(ListCategorySeeder::class);
+         $this->call(ReviewMoodSeeder::class);
 
 
          Film::factory(100)->create();
@@ -30,5 +32,6 @@ class DatabaseSeeder extends Seeder
          FilmListing::factory(100)->create();
          Favorite::factory(100)->create();
          Evaluation::factory(10)->create();
+         Review::factory(10)->create();
     }
 }
