@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Article;
+use App\Models\ArticleHeading;
 use App\Models\Evaluation;
 use App\Models\Favorite;
 use App\Models\Film;
@@ -25,6 +27,7 @@ class DatabaseSeeder extends Seeder
          $this->call(GenreSeeder::class);
          $this->call(ListCategorySeeder::class);
          $this->call(ReviewMoodSeeder::class);
+         $this->call(HeadingSeeder::class);
 
 
          Film::factory(100)->create();
@@ -33,5 +36,7 @@ class DatabaseSeeder extends Seeder
          Favorite::factory(100)->create();
          Evaluation::factory(10)->create();
          Review::factory(10)->create();
+         Article::factory(100)->create();
+         ArticleHeading::factory(200)->create();
     }
 }
